@@ -9,9 +9,9 @@ public interface ServiceInterface<T, ID> {
 
   Optional<T> findById(ID id);
 
-  T save(T entity);
+  T save(T model);
 
-  T update(ID id, T entity);
+  T update(ID id, T model);
 
   void deleteById(ID id);
 

@@ -2,6 +2,8 @@ plugins {
 	java
 	id("org.springframework.boot") version "3.5.4"
 	id("io.spring.dependency-management") version "1.1.7"
+    kotlin("plugin.lombok") version "2.2.0"
+    id("io.freefair.lombok") version "8.13.1"
 }
 
 group = "com.kevin.planeta"

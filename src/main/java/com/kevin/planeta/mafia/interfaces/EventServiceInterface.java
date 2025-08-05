@@ -1,7 +1,9 @@
 package com.kevin.planeta.mafia.interfaces;
 
-import com.kevin.planeta.mafia.entity.EventEntity;
+import com.kevin.planeta.mafia.models.Event;
+import org.springframework.stereotype.Component;
 
-public interface EventServiceInterface extends ServiceInterface<EventEntity, Long> {
+@Component
+public interface EventServiceInterface extends ServiceInterface<Event, Long> {
 
 }

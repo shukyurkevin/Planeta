@@ -2,9 +2,19 @@ package com.kevin.planeta.mafia.entity;
 
 import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Table("Events")
 public class EventEntity {
 // This class represents an event entity in the Mafia game application.
@@ -19,33 +29,9 @@ public class EventEntity {
   // Using Local from Spring CGLIB for date representation
   private LocalDate date;
 
-  public EventEntity(Long id, String eventName, LocalDate date) {
-    this.id = id;
-    this.eventName = eventName;
-    this.date = date;
-  }
+  @Column("Duration")
+  // Duration in minutes, can be null if not specified
+  private Long duration;
 
-  public Long getId() {
-    return id;
-  }
 
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public String getEventName() {
-    return eventName;
-  }
-
-  public void setName(String eventName) {
-    this.eventName = eventName;
-  }
-
-  public LocalDate getDate() {
-    return date;
-  }
-
-  public void setDate(LocalDate date) {
-    this.date = date;
-  }
 }
