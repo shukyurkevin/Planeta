@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - changeSet:
+      id: "initial-setup"
+      author: "Kevin"
+      changes:
+        - sqlFile:
+            path: classpath:db/changelog/scripts/initial.sql

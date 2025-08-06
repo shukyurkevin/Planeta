@@ -2,7 +2,9 @@ package com.kevin.planeta.mafia.interfaces;
 
 import java.util.List;
 import java.util.Optional;
+import org.springframework.stereotype.Component;
 
+@Component
 public interface ServiceInterface<T, ID> {
 
   List<T> findAll();

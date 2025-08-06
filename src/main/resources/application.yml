@@ -1,0 +1,23 @@
+Spring:
+    application:
+        name: "planetBack"
+
+
+    jpa:
+        hibernate:
+          ddl-auto: none
+        database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+    datasource:
+        url: jdbc:postgresql://localhost:5435/planet
+        username: KEVIN
+        password: qiwen
+        driver-class-name: org.postgresql.Driver
+
+    liquibase:
+        change-log: classpath:db/changelog/master.yml
+        drop-first: false
+        enabled: true
+        url: ${spring.datasource.url}
+        user: ${spring.datasource.username}
+        password: ${spring.datasource.password}
