@@ -24,7 +24,6 @@ public class WebSecurityConfig {
       .csrf(AbstractHttpConfigurer::disable)
       .authorizeHttpRequests(auth -> auth
           .requestMatchers("/api/events/**").permitAll()
-          .requestMatchers("/api/players/allEvents").permitAll()
           .anyRequest().authenticated())
       .httpBasic(Customizer.withDefaults());
 

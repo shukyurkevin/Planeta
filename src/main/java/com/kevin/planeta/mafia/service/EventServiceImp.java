@@ -8,6 +8,7 @@ import com.kevin.planeta.mafia.repositories.EventRepository;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.StreamSupport;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
@@ -17,6 +18,7 @@ public class EventServiceImp implements EventServiceInterface {
   private final EventRepository eventRepository;
   private final MapperInterface<Event, EventEntity> eventMapper;
 
+  @Autowired
   public EventServiceImp(EventRepository eventRepository,
                          MapperInterface<Event, EventEntity> eventMapper) {
     this.eventRepository = eventRepository;
@@ -26,12 +28,11 @@ public class EventServiceImp implements EventServiceInterface {
 
   @Override
   public List<Event> findAll() {
-    List<Event> events = StreamSupport.stream(eventRepository
+    return eventRepository
         .findAll()
-        .spliterator(), false)
+        .stream()
         .map(eventMapper::mapToModel)
         .toList();
-    return events;
   }
 
   @Override

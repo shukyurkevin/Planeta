@@ -3,11 +3,13 @@ package com.kevin.planeta.mafia.controllers;
 import com.kevin.planeta.mafia.interfaces.ServiceInterface;
 import com.kevin.planeta.mafia.models.Event;
 import java.util.List;
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@Controller
 @RestController
 @RequestMapping("/api/events")
 public class EventRestController {
@@ -18,33 +20,35 @@ public class EventRestController {
     this.eventService = eventService;
   }
 
-  @RequestMapping("/allEvents")
+  @GetMapping("/allEvents")
   public List<Event> getAllEvents() {
     return eventService.findAll();
   }
 
-  @RequestMapping("/eventById")
-  public Event getEventById(Long id){
+  @GetMapping("/eventById/{id}")
+  public Event getEventById(@PathVariable(name = "id") Long id){
     return eventService.findById(id)
         .orElseThrow(() -> new RuntimeException("Event not found with id: " + id));
   }
 
-  @RequestMapping("/newEvent")
-  public Event createEvent(Event event) {
+  @PostMapping("/newEvent")
+  public Event createEvent(@RequestBody Event event) {
     return eventService.save(event);
   }
 
-  @RequestMapping("/updateEvent")
-  public Event updateEvent(Long id, Event event) {
+  @PostMapping("/updateEvent/{id}")
+  public Event updateEvent(@PathVariable(name = "id") Long id,@RequestBody Event event)
+  {
     return eventService.update(id, event);
   }
 
-  @RequestMapping("/deleteEvent")
-  public void deleteEvent(Long id) {
+  @PostMapping("/deleteEvent/{id}")
+  public void deleteEvent(@PathVariable(name = "id") Long id) {
     eventService.deleteById(id);
   }
-  @RequestMapping("/eventExists")
-  public boolean eventExists(Long id) {
+
+  @GetMapping("/eventExists/{id}")
+  public boolean eventExists(@PathVariable(name = "id") Long id) {
         return eventService.existsById(id);
   }
 }
