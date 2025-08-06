@@ -1,17 +1,15 @@
 package com.kevin.planeta.mafia.interfaces;
 
 import java.util.List;
-import org.springframework.stereotype.Component;
 
-@Component
-public interface MapperInterface<Model, ENTITY> {
+public interface MapperInterface<M, E> {
 
-  public ENTITY mapToEntity(Model model);
+  public E mapToEntity(M model);
 
-  public Model mapToModel(ENTITY entity);
+  public M mapToModel(E entity);
 
-  public List<ENTITY> mapToEntityList(List<Model> modelList);
+  public List<E> mapToEntityList(List<M> modelList);
 
-  public List<Model> mapToModelList(List<ENTITY> entityList);
+  public List<M> mapToModelList(List<E> entityList);
 
 }

@@ -1,26 +1,29 @@
 package com.kevin.planeta.mafia.service;
 
 import com.kevin.planeta.mafia.entity.EventEntity;
-import com.kevin.planeta.mafia.interfaces.EventServiceInterface;
+import com.kevin.planeta.mafia.interfaces.EventService;
 import com.kevin.planeta.mafia.interfaces.MapperInterface;
 import com.kevin.planeta.mafia.models.Event;
 import com.kevin.planeta.mafia.repositories.EventRepository;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.StreamSupport;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
 @Service
-public class EventServiceImp implements EventServiceInterface {
+public class EventServiceImpl implements EventService {
 
   private final EventRepository eventRepository;
   private final MapperInterface<Event, EventEntity> eventMapper;
 
   @Autowired
-  public EventServiceImp(EventRepository eventRepository,
-                         MapperInterface<Event, EventEntity> eventMapper) {
+  public EventServiceImpl(EventRepository eventRepository,
+                          MapperInterface<Event, EventEntity> eventMapper) {
     this.eventRepository = eventRepository;
     this.eventMapper = eventMapper;
   }

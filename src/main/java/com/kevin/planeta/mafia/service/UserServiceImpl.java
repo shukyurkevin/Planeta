@@ -11,14 +11,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserServiceImp implements UserServiceInterface {
+public class UserServiceImpl implements UserServiceInterface {
 
   private final UserRepository userRepository;
   private final MapperInterface<User, UserEntity> userMapper;
 
   @Autowired
-  public UserServiceImp(UserRepository userRepository,
-                            MapperInterface<User, UserEntity> userMapper) {
+  public UserServiceImpl(UserRepository userRepository,
+                         MapperInterface<User, UserEntity> userMapper) {
         this.userRepository = userRepository;
         this.userMapper = userMapper;
   }

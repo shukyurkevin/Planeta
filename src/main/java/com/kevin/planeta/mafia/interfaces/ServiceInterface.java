@@ -4,7 +4,8 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.stereotype.Component;
 
-@Component
+
+// todo: separate interfaces by context (User, Event, etc.)
 public interface ServiceInterface<T, ID> {
 
   List<T> findAll();

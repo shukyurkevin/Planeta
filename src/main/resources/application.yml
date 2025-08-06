@@ -1,7 +1,10 @@
+#server:
+#    servlet:
+#        context-path: "/api/v1"
+
 spring:
     application:
         name: "planetBack"
-
 
     jpa:
         hibernate:

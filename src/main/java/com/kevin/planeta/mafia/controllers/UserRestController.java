@@ -3,6 +3,8 @@ package com.kevin.planeta.mafia.controllers;
 import com.kevin.planeta.mafia.interfaces.ServiceInterface;
 import com.kevin.planeta.mafia.models.User;
 import java.util.List;
+
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,14 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/users")
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class UserRestController {
 
   private final ServiceInterface<User, Long> userService;
-
-  @Autowired
-  public UserRestController(ServiceInterface<User, Long> userService) {
-    this.userService = userService;
-  }
 
   @GetMapping("/allUsers")
   public List<User> getAllUsers() {
