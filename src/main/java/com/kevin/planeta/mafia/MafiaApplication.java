@@ -9,7 +9,6 @@ public class MafiaApplication {
 	public static void main(String[] args) {
 
       SpringApplication.run(MafiaApplication.class, args);
-      System.out.println("program running");
 	}
 
 }

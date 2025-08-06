@@ -5,3 +5,13 @@ databaseChangeLog:
       changes:
         - sqlFile:
             path: classpath:db/changelog/scripts/initial.sql
+
+
+
+
+  - changeSet:
+      id: "first insert"
+      author: "Qiwen"
+      changes:
+        - sqlFile:
+            path: classpath:db/changelog/scripts/initial-insert.sql

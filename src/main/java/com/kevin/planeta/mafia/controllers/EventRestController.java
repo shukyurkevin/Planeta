@@ -2,7 +2,6 @@ package com.kevin.planeta.mafia.controllers;
 
 import com.kevin.planeta.mafia.interfaces.ServiceInterface;
 import com.kevin.planeta.mafia.models.Event;
-import com.kevin.planeta.mafia.service.EventServiceImp;
 import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

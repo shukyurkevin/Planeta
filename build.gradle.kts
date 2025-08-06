@@ -24,7 +24,6 @@ dependencies {
     implementation("org.hibernate.validator:hibernate-validator:8.0.1.Final")
 	implementation("org.springframework.boot:spring-boot-starter-security")
 	implementation("org.springframework.boot:spring-boot-starter-web")
-	implementation("org.springframework.boot:spring-boot-starter-web-services")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.liquibase:liquibase-core:4.33.0")
 	developmentOnly("org.springframework.boot:spring-boot-devtools")

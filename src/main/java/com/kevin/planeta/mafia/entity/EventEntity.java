@@ -15,20 +15,22 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Entity
+@Entity(name = "events")
 public class EventEntity {
 // This class represents an event entity in the Mafia game application.
 
   @Id
+  @Column(name = "id")
   private Long id;
 
-  @Column
+  @Column(name = "name", nullable = false)
   private String eventName;
 
-  @Column
+  @Column(name = "event_date", nullable = false)
   private LocalDate date;
-  // Duration in minutes, can be null if not specified
-  @Column
+
+    // Duration in minutes
+  @Column(name = "duration", nullable = false)
   private Long duration;
 
 
