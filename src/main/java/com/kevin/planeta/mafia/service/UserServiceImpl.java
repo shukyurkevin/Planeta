@@ -2,7 +2,7 @@ package com.kevin.planeta.mafia.service;
 
 import com.kevin.planeta.mafia.entity.UserEntity;
 import com.kevin.planeta.mafia.interfaces.MapperInterface;
-import com.kevin.planeta.mafia.interfaces.UserServiceInterface;
+import com.kevin.planeta.mafia.interfaces.UserService;
 import com.kevin.planeta.mafia.models.User;
 import com.kevin.planeta.mafia.repositories.UserRepository;
 import java.util.List;
@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserServiceImpl implements UserServiceInterface {
+public class UserServiceImpl implements UserService {
 
   private final UserRepository userRepository;
   private final MapperInterface<User, UserEntity> userMapper;
