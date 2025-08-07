@@ -1,4 +1,4 @@
-package com.kevin.planeta.mafia.uTests;
+package com.kevin.planeta.mafia.mapper_tests;
 
 import com.kevin.planeta.mafia.entity.UserEntity;
 import com.kevin.planeta.mafia.mappers.UserMapper;
