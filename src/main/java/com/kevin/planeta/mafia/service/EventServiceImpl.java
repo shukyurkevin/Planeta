@@ -1,6 +1,7 @@
 package com.kevin.planeta.mafia.service;
 
 import com.kevin.planeta.mafia.entity.EventEntity;
+import com.kevin.planeta.mafia.exeption.EventNotFoundException;
 import com.kevin.planeta.mafia.interfaces.EventService;
 import com.kevin.planeta.mafia.interfaces.MapperInterface;
 import com.kevin.planeta.mafia.models.Event;
@@ -54,7 +55,7 @@ public class EventServiceImpl implements EventService {
   public Event update(Long id, Event model) {
 
     if (!eventRepository.existsById(id)){
-      throw new RuntimeException("event not found");
+      throw new EventNotFoundException("Event not found with id: " + id);
     }
     EventEntity eventEntity = eventMapper.mapToEntity(model);
     eventEntity.setId(id);
@@ -67,7 +68,7 @@ public class EventServiceImpl implements EventService {
   @Override
   public void deleteById(Long id) {
     if (!eventRepository.existsById(id)) {
-      throw new RuntimeException("event not found");
+      throw new EventNotFoundException("Event not found with id: " + id);
     }
     eventRepository.deleteById(id);
   }

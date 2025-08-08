@@ -1,6 +1,7 @@
-package com.kevin.planeta.mafia.mappers;
+package com.kevin.planeta.mafia.unit.mappers;
 
 import com.kevin.planeta.mafia.entity.EventEntity;
+import com.kevin.planeta.mafia.mappers.EventMapper;
 import com.kevin.planeta.mafia.models.Event;
 import java.time.LocalDate;
 import java.util.List;
@@ -20,13 +21,11 @@ public class EventMapperTests {
         eventMapper = new EventMapper();
     }
   private Event createTestEvent() {
-    LocalDate date = LocalDate.of(2023, 10, 1);
-    return new Event(2L, "Test Event",date, 120L);
+    return new Event(2L, "Test Event",LocalDate.of(2023, 10, 1), 120L);
   }
 
   private EventEntity createTestEventEntity() {
-    LocalDate date = LocalDate.of(2025, 12, 5);
-    return new EventEntity(3L, "Test EventEntity",date, 145L);
+    return new EventEntity(3L, "Test EventEntity",LocalDate.of(2025, 12, 5), 145L);
   }
 
   private void assertEvent(Event event, EventEntity entity) {

@@ -1,6 +1,7 @@
-package com.kevin.planeta.mafia.mappers;
+package com.kevin.planeta.mafia.unit.mappers;
 
 import com.kevin.planeta.mafia.entity.UserEntity;
+import com.kevin.planeta.mafia.mappers.UserMapper;
 import com.kevin.planeta.mafia.models.User;
 import java.util.List;
 import org.junit.jupiter.api.BeforeAll;
