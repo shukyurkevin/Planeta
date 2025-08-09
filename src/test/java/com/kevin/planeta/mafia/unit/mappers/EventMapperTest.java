@@ -12,7 +12,7 @@ import org.junit.jupiter.api.TestInstance;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @DisplayName("EventMapper Tests")
-public class EventMapperTests {
+public class EventMapperTest {
 
   private EventMapper eventMapper;
 

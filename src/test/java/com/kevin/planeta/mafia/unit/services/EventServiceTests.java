@@ -45,8 +45,15 @@ public class EventServiceTests {
     return new Event(id, "Test Event "+ id, OffsetDateTime.now().toLocalDate(), 180L);
   }
 
+  private void verifyEventEquality(EventEntity entity, Event model){
+    assertEquals(entity.getId(), model.getId());
+    assertEquals(entity.getEventName(), model.getEventName());
+    assertEquals(entity.getDate(), model.getDate());
+    assertEquals(entity.getDuration(), model.getDuration());
+  }
+
   @Test
-  @DisplayName("Test findAllEvents method")
+  @DisplayName("Test findAllEvents")
   public void findAllEvents() {
     EventEntity eventEntity = createTestEventEntity(4L);
     Event event = createTestEvent(4L);
@@ -54,15 +61,15 @@ public class EventServiceTests {
     when(eventMapper.mapToModel(eventEntity)).thenReturn(event);
 
     List<Event> events = eventService.findAll();
-    assertEquals(1, events.size());
-    assertEquals("Test Event 4", event.getEventName());
+
+    verifyEventEquality(eventEntity,events.getFirst());
     verify(eventRepository).findAll();
     verify(eventMapper).mapToModel(eventEntity);
 
   }
 
   @Test
-  @DisplayName("Test getEventById method")
+  @DisplayName("Test getEventById")
   public void findEventById() {
 
     EventEntity eventEntity = createTestEventEntity(3L);
@@ -74,8 +81,7 @@ public class EventServiceTests {
     Optional<Event> foundEvent = eventService.findById(3L);
 
     assertTrue(foundEvent.isPresent());
-    assertEquals(event.getId(), foundEvent.get().getId());
-    assertEquals("Test Event 3", foundEvent.get().getEventName());
+    verifyEventEquality(eventEntity,foundEvent.get());
 
     verify(eventRepository).findById(3L);
     verify(eventMapper).mapToModel(eventEntity);
@@ -93,7 +99,7 @@ public class EventServiceTests {
   }
 
   @Test
-  @DisplayName("Test Event save method")
+  @DisplayName("Test Event save")
   public void saveEvent() {
 
     Event event = createTestEvent(2L);
@@ -104,15 +110,14 @@ public class EventServiceTests {
 
     Event savedEvent = eventService.save(event);
 
-    assertEquals(event.getId(), savedEvent.getId());
-    assertEquals("Test Event 2", savedEvent.getEventName());
+    verifyEventEquality(eventEntity,savedEvent);
 
     verify(eventMapper).mapToEntity(event);
     verify(eventRepository).save(eventEntity);
   }
 
   @Test
-  @DisplayName("Test Event update method")
+  @DisplayName("Test Event update")
   public void updateEvent(){
 
     Event event = createTestEvent(6L);
@@ -124,8 +129,7 @@ public class EventServiceTests {
 
     Event updatedEvent = eventService.update(6L, event);
 
-    assertEquals(6L, updatedEvent.getId());
-    assertEquals("Test Event 6", updatedEvent.getEventName());
+    verifyEventEquality(eventEntity, updatedEvent);
 
     verify(eventMapper).mapToEntity(event);
     verify(eventRepository).existsById(6L);
@@ -165,12 +169,13 @@ public class EventServiceTests {
     verify(eventRepository).existsById(2L);
   }
   @Test
-  @DisplayName("Test Event existById method")
+  @DisplayName("Test Event existById")
   public void existById(){
 
     when(eventRepository.existsById(7L)).thenReturn(true);
 
     assertTrue(eventService.existsById(7L));
+    verify(eventRepository).existsById(7L);
   }
   @Test
   @DisplayName("Test Event existById returns false")
@@ -179,6 +184,7 @@ public class EventServiceTests {
     when(eventRepository.existsById(8L)).thenReturn(false);
 
     assertFalse(eventService.existsById(8L));
+    verify(eventRepository).existsById(8L);
   }
 
 }

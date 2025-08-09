@@ -11,7 +11,7 @@ import org.junit.jupiter.api.TestInstance;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @DisplayName("UserMapper Tests")
-public class UserMapperTests {
+public class UserMapperTest {
 
   private UserMapper userMapper;
 

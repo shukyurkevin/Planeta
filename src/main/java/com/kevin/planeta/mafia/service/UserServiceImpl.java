@@ -1,6 +1,7 @@
 package com.kevin.planeta.mafia.service;
 
 import com.kevin.planeta.mafia.entity.UserEntity;
+import com.kevin.planeta.mafia.exeption.UserNotFoundException;
 import com.kevin.planeta.mafia.interfaces.MapperInterface;
 import com.kevin.planeta.mafia.interfaces.UserService;
 import com.kevin.planeta.mafia.models.User;
@@ -49,7 +50,7 @@ public class UserServiceImpl implements UserService {
   public User update(Long id, User model) {
 
     if (!userRepository.existsById(id)){
-        throw new RuntimeException("User not found");
+        throw new UserNotFoundException("User not found");
     }
 
     UserEntity userEntity = userMapper.mapToEntity(model);
@@ -64,7 +65,7 @@ public class UserServiceImpl implements UserService {
   public void deleteById(Long id) {
 
     if (!userRepository.existsById(id)) {
-      throw new RuntimeException("User not found");
+      throw new UserNotFoundException("User not found");
     }
     userRepository.deleteById(id);
   }
