@@ -1,26 +1,30 @@
 package com.kevin.planeta.mafia.service;
 
 import com.kevin.planeta.mafia.entity.EventEntity;
-import com.kevin.planeta.mafia.interfaces.EventServiceInterface;
+import com.kevin.planeta.mafia.exeption.EventNotFoundException;
+import com.kevin.planeta.mafia.interfaces.EventService;
 import com.kevin.planeta.mafia.interfaces.MapperInterface;
 import com.kevin.planeta.mafia.models.Event;
 import com.kevin.planeta.mafia.repositories.EventRepository;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.StreamSupport;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
 @Service
-public class EventServiceImp implements EventServiceInterface {
+public class EventServiceImpl implements EventService {
 
   private final EventRepository eventRepository;
   private final MapperInterface<Event, EventEntity> eventMapper;
 
   @Autowired
-  public EventServiceImp(EventRepository eventRepository,
-                         MapperInterface<Event, EventEntity> eventMapper) {
+  public EventServiceImpl(EventRepository eventRepository,
+                          MapperInterface<Event, EventEntity> eventMapper) {
     this.eventRepository = eventRepository;
     this.eventMapper = eventMapper;
   }
@@ -51,7 +55,7 @@ public class EventServiceImp implements EventServiceInterface {
   public Event update(Long id, Event model) {
 
     if (!eventRepository.existsById(id)){
-      throw new RuntimeException("event not found");
+      throw new EventNotFoundException("Event not found with id: " + id);
     }
     EventEntity eventEntity = eventMapper.mapToEntity(model);
     eventEntity.setId(id);
@@ -64,7 +68,7 @@ public class EventServiceImp implements EventServiceInterface {
   @Override
   public void deleteById(Long id) {
     if (!eventRepository.existsById(id)) {
-      throw new RuntimeException("event not found");
+      throw new EventNotFoundException("Event not found with id: " + id);
     }
     eventRepository.deleteById(id);
   }

@@ -1,8 +1,11 @@
 package com.kevin.planeta.mafia.controllers;
 
-import com.kevin.planeta.mafia.interfaces.ServiceInterface;
+import com.kevin.planeta.mafia.interfaces.EventService;
 import com.kevin.planeta.mafia.models.Event;
 import java.util.List;
+
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,13 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/events")
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class EventRestController {
 
-  private final ServiceInterface<Event, Long> eventService;
-    // Constructor injection for the service interface
-  public EventRestController(ServiceInterface<Event, Long> eventService) {
-    this.eventService = eventService;
-  }
+  private final EventService eventService;
 
   @GetMapping("/allEvents")
   public List<Event> getAllEvents() {
