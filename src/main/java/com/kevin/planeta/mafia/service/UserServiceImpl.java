@@ -1,8 +1,9 @@
 package com.kevin.planeta.mafia.service;
 
 import com.kevin.planeta.mafia.entity.UserEntity;
+import com.kevin.planeta.mafia.exeption.UserNotFoundException;
 import com.kevin.planeta.mafia.interfaces.MapperInterface;
-import com.kevin.planeta.mafia.interfaces.UserServiceInterface;
+import com.kevin.planeta.mafia.interfaces.UserService;
 import com.kevin.planeta.mafia.models.User;
 import com.kevin.planeta.mafia.repositories.UserRepository;
 import java.util.List;
@@ -11,14 +12,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserServiceImp implements UserServiceInterface {
+public class UserServiceImpl implements UserService {
 
   private final UserRepository userRepository;
   private final MapperInterface<User, UserEntity> userMapper;
 
   @Autowired
-  public UserServiceImp(UserRepository userRepository,
-                            MapperInterface<User, UserEntity> userMapper) {
+  public UserServiceImpl(UserRepository userRepository,
+                         MapperInterface<User, UserEntity> userMapper) {
         this.userRepository = userRepository;
         this.userMapper = userMapper;
   }
@@ -49,7 +50,7 @@ public class UserServiceImp implements UserServiceInterface {
   public User update(Long id, User model) {
 
     if (!userRepository.existsById(id)){
-        throw new RuntimeException("User not found");
+        throw new UserNotFoundException("User not found");
     }
 
     UserEntity userEntity = userMapper.mapToEntity(model);
@@ -64,7 +65,7 @@ public class UserServiceImp implements UserServiceInterface {
   public void deleteById(Long id) {
 
     if (!userRepository.existsById(id)) {
-      throw new RuntimeException("User not found");
+      throw new UserNotFoundException("User not found");
     }
     userRepository.deleteById(id);
   }

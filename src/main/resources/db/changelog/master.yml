@@ -6,9 +6,6 @@ databaseChangeLog:
         - sqlFile:
             path: classpath:db/changelog/scripts/initial.sql
 
-
-
-
   - changeSet:
       id: "first insert"
       author: "Qiwen"
@@ -22,3 +19,5 @@ databaseChangeLog:
       changes:
         - sqlFile:
             path: classpath:db/changelog/scripts/users.sql
+
+#  todo rename migration with prefix "v1", "v2-" and add a description
