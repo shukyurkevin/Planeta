@@ -12,12 +12,12 @@ public class EventMapper implements MapperInterface<Event, EventEntity> {
   @Override
   public EventEntity mapToEntity(Event eventModel) {
 
-    return EventEntity.builder()
-        .id(eventModel.getId())
-        .eventName(eventModel.getEventName())
-        .date(eventModel.getDate())
-        .duration(eventModel.getDuration())
-        .build();
+    return new EventEntity(
+            eventModel.getId(),
+            eventModel.getEventName(),
+            eventModel.getDate(),
+            eventModel.getDuration()
+        );
   }
 
   @Override
