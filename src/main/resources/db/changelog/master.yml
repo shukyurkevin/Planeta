@@ -1,23 +1,26 @@
 databaseChangeLog:
   - changeSet:
       id: "initial-setup"
+      description: "Created table events"
       author: "Kevin"
       changes:
         - sqlFile:
-            path: classpath:db/changelog/scripts/initial.sql
+            path: classpath:db/changelog/scripts/v1-initial.sql
 
   - changeSet:
       id: "first insert"
+      description: "inserted some values into table events for testing"
       author: "Qiwen"
       changes:
         - sqlFile:
-            path: classpath:db/changelog/scripts/initial-insert.sql
+            path: classpath:db/changelog/scripts/v2-initial-insert.sql
 
   - changeSet:
       id: "added users table"
+      description: "Created table users"
       author: "Kebin"
       changes:
         - sqlFile:
-            path: classpath:db/changelog/scripts/users.sql
+            path: classpath:db/changelog/scripts/v3-users.sql
 
 #  todo rename migration with prefix "v1", "v2-" and add a description

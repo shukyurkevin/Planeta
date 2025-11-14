@@ -1,5 +1,7 @@
 package com.kevin.planeta.mafia.unit.mappers;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import com.kevin.planeta.mafia.entity.EventEntity;
 import com.kevin.planeta.mafia.mappers.EventMapper;
 import com.kevin.planeta.mafia.models.Event;
@@ -17,7 +19,7 @@ public class EventMapperTest {
   private EventMapper eventMapper;
 
   @BeforeAll
-    public void setEventMapper() {
+  void setEventMapper() {
         eventMapper = new EventMapper();
     }
   private Event createTestEvent() {
@@ -29,30 +31,30 @@ public class EventMapperTest {
   }
 
   private void assertEvent(Event event, EventEntity entity) {
-    assert event.getId().equals(entity.getId());
-    assert event.getEventName().equals(entity.getEventName());
-    assert event.getDate().equals(entity.getDate());
-    assert event.getDuration().equals(entity.getDuration());
+    assertEquals(event.getId(), entity.getId());
+    assertEquals(event.getEventName(), entity.getEventName());
+    assertEquals(event.getDate() , entity.getDate());
+    assertEquals(event.getDuration(), entity.getDuration());
 
   }
 
   @Test
   @DisplayName("Map Event to EventEntity")
-  public void MapToEventEntity() {
+  void MapToEventEntity() {
     Event event = createTestEvent();
     EventEntity mappedEventEntity = eventMapper.mapToEntity(event);
     assertEvent(event, mappedEventEntity);
   }
   @Test
   @DisplayName("Map EventEntity to Event")
-  public void MapToEvent() {
+  void MapToEvent() {
     EventEntity eventEntity = createTestEventEntity();
     Event mappedEvent = eventMapper.mapToModel(eventEntity);
     assertEvent(mappedEvent, eventEntity);
   }
   @Test
   @DisplayName("Map Event List to EventEntity List")
-  public void MapToEventEntityList() {
+  void MapToEventEntityList() {
     List<Event> events = List.of(createTestEvent(), createTestEvent(), createTestEvent());
     List<EventEntity> mappedEventEntities = eventMapper.mapToEntityList(events);
     assert mappedEventEntities.size() == events.size();
@@ -63,7 +65,7 @@ public class EventMapperTest {
 
   @Test
   @DisplayName("Map EventEntity List to Event List")
-  public void MapToEventList() {
+  void MapToEventList() {
     List<EventEntity> eventEntities = List.of(createTestEventEntity(), createTestEventEntity(), createTestEventEntity());
     List<Event> mappedEvents = eventMapper.mapToModelList(eventEntities);
     assert mappedEvents.size() == eventEntities.size();

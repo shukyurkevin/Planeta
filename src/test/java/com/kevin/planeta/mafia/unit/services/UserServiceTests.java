@@ -24,7 +24,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 @DisplayName("Tests for UserService")
 @ExtendWith(MockitoExtension.class)
-public class UserServiceTests {
+class UserServiceTests {
 
   @InjectMocks
   private UserServiceImpl userService;
@@ -59,7 +59,7 @@ public class UserServiceTests {
 
   @Test
   @DisplayName("Test findAllUsers")
-  public void findAllUsers(){
+  void findAllUsers(){
 
     UserEntity entity = createUserEntity(4L);
     User model = createUserModel(4L);
@@ -77,7 +77,7 @@ public class UserServiceTests {
 
   @Test
   @DisplayName("Test findAllUsers When there is no Users")
-  public void findAllUsersEmpty(){
+  void findAllUsersEmpty(){
 
     when(userRepository.findAll()).thenReturn(List.of());
 
@@ -88,7 +88,7 @@ public class UserServiceTests {
   }
   @Test
   @DisplayName("Test findUserById")
-  public void findUserById(){
+  void findUserById(){
 
     UserEntity entity = createUserEntity(3L);
     User model = createUserModel(3L);
@@ -106,7 +106,7 @@ public class UserServiceTests {
   }
   @Test
   @DisplayName("Test findUserById not found")
-  public void findUserByIdNotFound(){
+  void findUserByIdNotFound(){
     when(userRepository.findById(113L)).thenReturn(Optional.empty());
 
     Optional<User> result = userService.findById(113L);
@@ -117,7 +117,7 @@ public class UserServiceTests {
 
   @Test
   @DisplayName("Test User save")
-  public void saveUser(){
+  void saveUser(){
 
     UserEntity entity = createUserEntity(5L);
     User model = createUserModel(5L);
@@ -135,7 +135,7 @@ public class UserServiceTests {
 
   @Test
   @DisplayName("Test User update")
-  public void userUpdate(){
+  void userUpdate(){
 
     UserEntity entity = createUserEntity(1L);
     User model = createUserModel(1L);
@@ -155,7 +155,7 @@ public class UserServiceTests {
 
   @Test
   @DisplayName("Test User update if no User is found")
-  public void updateUserNotFound(){
+  void updateUserNotFound(){
 
     User model = createUserModel(3L);
 
@@ -167,7 +167,7 @@ public class UserServiceTests {
 
   @Test
   @DisplayName("Test User deleteById")
-  public void deleteUser(){
+  void deleteUser(){
 
     when(userRepository.existsById(2L)).thenReturn(true);
 
@@ -179,7 +179,7 @@ public class UserServiceTests {
 
   @Test
   @DisplayName("Test User deleteById not found")
-  public void deleteUserNotFound(){
+  void deleteUserNotFound(){
 
     when(userRepository.existsById(2L)).thenReturn(false);
 
@@ -189,7 +189,7 @@ public class UserServiceTests {
 
   @Test
   @DisplayName("Test User existById")
-  public void existById(){
+  void existById(){
 
     when(userRepository.existsById(4L)).thenReturn(true);
 
@@ -199,7 +199,7 @@ public class UserServiceTests {
 
   @Test
   @DisplayName("Test User existById return false")
-  public void notExistById(){
+  void notExistById(){
 
     when(userRepository.existsById(4L)).thenReturn(false);
 

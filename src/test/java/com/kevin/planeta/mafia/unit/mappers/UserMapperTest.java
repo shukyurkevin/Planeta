@@ -1,4 +1,5 @@
 package com.kevin.planeta.mafia.unit.mappers;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.kevin.planeta.mafia.entity.UserEntity;
 import com.kevin.planeta.mafia.mappers.UserMapper;
@@ -16,7 +17,7 @@ public class UserMapperTest {
   private UserMapper userMapper;
 
   @BeforeAll
-  public void setUserMapper(){
+  void setUserMapper(){
     userMapper = new UserMapper();
   }
 
@@ -45,7 +46,7 @@ public class UserMapperTest {
 
   @Test
   @DisplayName("Map User to UserEntity")
-  public void mapToUserEntity() {
+  void mapToUserEntity() {
 
     User user = createTestUser();
     UserEntity mappedUserEntity = userMapper.mapToEntity(user);
@@ -54,7 +55,7 @@ public class UserMapperTest {
     }
   @Test
   @DisplayName("Map UserEntity to User")
-  public void mapToUser() {
+  void mapToUser() {
 
     UserEntity userEntity = createTestUserEntity();
     User mappedUser = userMapper.mapToModel(userEntity);
@@ -64,7 +65,7 @@ public class UserMapperTest {
 
   @Test
   @DisplayName("Map User list to UnserEntity list")
-  public void mapToUserEntityList() {
+  void mapToUserEntityList() {
     User user = createTestUser();
     List<User> users = List.of(user, user, user, user);
     List<UserEntity> mappedUsers = userMapper.mapToEntityList(users);
@@ -78,7 +79,7 @@ public class UserMapperTest {
 
   @Test
   @DisplayName("Map UserEntity list to User list")
-  public void mapToUserList() {
+  void mapToUserList() {
     UserEntity userEntity = createTestUserEntity();
     List<UserEntity> userEntities = List.of(userEntity, userEntity, userEntity);
     List<User> mappedUsers = userMapper.mapToModelList(userEntities);

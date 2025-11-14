@@ -26,7 +26,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 @DisplayName("Unit tests for EventService")
 @ExtendWith(MockitoExtension.class)
-public class EventServiceTests {
+class EventServiceTests {
 
   @Mock
   private EventRepository eventRepository;
@@ -54,7 +54,7 @@ public class EventServiceTests {
 
   @Test
   @DisplayName("Test findAllEvents")
-  public void findAllEvents() {
+  void findAllEvents() {
     EventEntity eventEntity = createTestEventEntity(4L);
     Event event = createTestEvent(4L);
     when(eventRepository.findAll()).thenReturn(List.of(eventEntity));
@@ -70,7 +70,7 @@ public class EventServiceTests {
 
   @Test
   @DisplayName("Test getEventById")
-  public void findEventById() {
+  void findEventById() {
 
     EventEntity eventEntity = createTestEventEntity(3L);
     Event event = createTestEvent(3L);
@@ -88,7 +88,7 @@ public class EventServiceTests {
   }
   @Test
   @DisplayName("Test getEventById if not found")
-  public void findEventByIdNotFound() {
+  void findEventByIdNotFound() {
 
     when(eventRepository.findById(99L)).thenReturn(Optional.empty());
 
@@ -100,7 +100,7 @@ public class EventServiceTests {
 
   @Test
   @DisplayName("Test Event save")
-  public void saveEvent() {
+  void saveEvent() {
 
     Event event = createTestEvent(2L);
     EventEntity eventEntity = createTestEventEntity(2L);
@@ -118,7 +118,7 @@ public class EventServiceTests {
 
   @Test
   @DisplayName("Test Event update")
-  public void updateEvent(){
+  void updateEvent(){
 
     Event event = createTestEvent(6L);
     EventEntity eventEntity = createTestEventEntity(6L);
@@ -138,7 +138,7 @@ public class EventServiceTests {
 
   @Test
   @DisplayName("Test Event update if no event is found")
-  public void updateEventNotFound(){
+  void updateEventNotFound(){
 
     Event event = createTestEvent(3L);
 
@@ -150,7 +150,7 @@ public class EventServiceTests {
 
   @Test
   @DisplayName("Test Event deleteById")
-  public void deleteById(){
+  void deleteById(){
 
     when(eventRepository.existsById(3L)).thenReturn(true);
 
@@ -161,7 +161,7 @@ public class EventServiceTests {
   }
   @Test
   @DisplayName("Test Event deleteById if no event is found")
-  public void deleteByIdNotFound(){
+  void deleteByIdNotFound(){
 
     when(eventRepository.existsById(2L)).thenReturn(false);
 
@@ -170,7 +170,7 @@ public class EventServiceTests {
   }
   @Test
   @DisplayName("Test Event existById")
-  public void existById(){
+  void existById(){
 
     when(eventRepository.existsById(7L)).thenReturn(true);
 
@@ -179,7 +179,7 @@ public class EventServiceTests {
   }
   @Test
   @DisplayName("Test Event existById returns false")
-  public void existByIdReturnsFalse() {
+  void existByIdReturnsFalse() {
 
     when(eventRepository.existsById(8L)).thenReturn(false);
 
